@@ -15,13 +15,13 @@ Please upload your image.
 
 with st.echo(code_location='below'):
     # 만약 이미지를 업로드 했다면 원본 이미지를 업로드이미지로 설정, 아니라면 데모 이미지로 설정
-    image_uploaded = st.sidebar.file_uploader("Image Upload:", type=["png", "jpg"])
+    image_uploaded = st.file_uploader("Image Upload:", type=["png", "jpg"])
     if image_uploaded:
         image_origin = Image.open(image_uploaded)
     else:
         image_origin = Image.open('demo.jpg')
     image_origin = np.array(image_origin.convert('RGB'))
-    st.sidebar.image(image_origin)
+    st.image(image_origin)
     
     if st.button("Predict my MBTI"):
         # result = predict(image_origin)
