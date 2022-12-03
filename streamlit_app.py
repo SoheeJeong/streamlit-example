@@ -13,7 +13,7 @@ import numpy as np
 Please upload your image.
 """
 
-with st.echo(code_location='below'):
+def main():
     # 만약 이미지를 업로드 했다면 원본 이미지를 업로드이미지로 설정, 아니라면 데모 이미지로 설정
     image_uploaded = st.file_uploader("Image Upload:", type=["png", "jpg"])
     if image_uploaded:
@@ -27,3 +27,6 @@ with st.echo(code_location='below'):
         # result = predict(image_origin)
         result = "ISFJ"
         st.text(result)
+
+if __name__ == "__main__":
+    main()
