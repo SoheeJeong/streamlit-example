@@ -8,14 +8,12 @@ import PIL.Image as Image
 import numpy as np
 
 """
-# Welcome to Streamlit!
-
-Please upload your image.
+# Predict MBTI from your face!
 """
 
 def main():
     # 만약 이미지를 업로드 했다면 원본 이미지를 업로드이미지로 설정, 아니라면 데모 이미지로 설정
-    image_uploaded = st.file_uploader("Image Upload:", type=["png", "jpg"])
+    image_uploaded = st.file_uploader("Please upload your image:", type=["png", "jpg"])
     if image_uploaded:
         image_origin = Image.open(image_uploaded)
     else:
