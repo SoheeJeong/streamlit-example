@@ -8,7 +8,7 @@ import PIL.Image as Image
 import numpy as np
 
 """
-# Predict MBTI from your face!
+# Predict your MBTI with your face!
 """
 
 def main():
