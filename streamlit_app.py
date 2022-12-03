@@ -4,6 +4,7 @@ import math
 import pandas as pd
 import streamlit as st
 from predict import predict
+import PIL.Image as Image
 
 """
 # Welcome to Streamlit!
