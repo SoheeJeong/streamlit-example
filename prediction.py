@@ -54,7 +54,7 @@ def detect_and_resize(gray):
         angle = (angle * 180) / np.pi
         #print(angle)
     else:
-        #print("Eyes not detected")
+        #print("Eyes not detected") 
         pass
     # face straightening
     rows, cols = gray.shape[:2]
