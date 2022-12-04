@@ -22,9 +22,10 @@ def main():
     st.image(image_origin)
     
     if st.button("Predict my MBTI"):
-        result = predict(image_origin)
+        result,image2 = predict(image_origin)
         # result = "ISFJ"
         st.text(result)
+        st.image(image2)
 
 if __name__ == "__main__":
     main()

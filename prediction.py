@@ -82,7 +82,6 @@ def preprocess(image):
 def predict(image):
     #cv2 전처리 pipeline 거치기
     image2 = preprocess(image)
-    st.image(image2)
     transform = transforms.ToTensor()
     image_tensor = transform(image2)
     #i or e
@@ -100,4 +99,4 @@ def predict(image):
     third = 'f'
     #j or p
     forth = 'j'
-    return first+second+third+forth
+    return first+second+third+forth, image2
