@@ -81,7 +81,7 @@ def predict(image):
     #i or e
     first = 'i'
     #s or n
-    sn_model = SN_Net((image2.shape[1], image2.shape[2]))
+    sn_model = SN_Net((image2.shape[0], image2.shape[1]))
     sn_model.load_state_dict(torch.load('sn_model.pth'))
     sn_model.eval()
     with torch.no_grad():
