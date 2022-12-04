@@ -1,6 +1,6 @@
 import torch.nn as nn
 import torch.nn.functional as F
-
+import torch
 
 
 class SN_Net(nn.Module):
@@ -41,7 +41,7 @@ class SN_Net(nn.Module):
         out_feat1 = 120
         out_feat2 = 84
         out_feat3 = 1
-        
+
         input_height, input_width = input_shape
 
         self.conv1 = nn.Conv2d(in_channels = in_ch1, out_channels = out_ch1, kernel_size = ker1, stride = stride1, padding = pad1)
