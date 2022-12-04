@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from model import SN_Net
 import torch
+import torchvision.transforms as transforms
 
 def detect_and_resize(gray):
     face_detection_option = {'haarcascade_frontalface_default.xml', 'haarcascade_frontalface_alt.xml', 'haarcascade_frontalface_alt2.xml', 'haarcascade_frontalface_alt_tree.xml'}
@@ -80,14 +81,15 @@ def preprocess(image):
 def predict(image):
     #cv2 전처리 pipeline 거치기
     image2 = preprocess(image)
+    image_tensor = transform.ToTensor(image2)
     #i or e
     first = 'i'
     #s or n
-    sn_model = SN_Net((image2.shape[0], image2.shape[1]))
+    sn_model = SN_Net((image_tensor.shape[0], image_tensor.shape[1]))
     sn_model.load_state_dict(torch.load('sn_model.pth'))
     sn_model.eval()
     with torch.no_grad():
-        y_pred = sn_model(image2.unsqueeze(0))
+        y_pred = sn_model(image_tensor.unsqueeze(0))
     second = 's' if ypred==1 else 'n'
     #f or t
     third = 'f'
