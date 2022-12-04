@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 from model import SN_Net
 
 def detect_and_resize(gray):
