@@ -11,7 +11,7 @@ def detect_and_resize(gray):
             break
     if len(face_detected) == 0:
         #print("No faces detected")
-        pass
+        pass 
     (x,y,w,h) = face_detected[0]
 
     eyes_detection_option = {'haarcascade_eye.xml', 'haarcascade_eye_tree_eyeglasses.xml'}
