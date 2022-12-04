@@ -43,7 +43,7 @@ class SN_Net(nn.Module):
     out_feat3 = 1
 
     def __init__(self, input_shape):
-        super(Net, self).__init__()
+        super(SN_Net, self).__init__()
         input_height, input_width = input_shape
 
         self.conv1 = nn.Conv2d(in_channels = in_ch1, out_channels = out_ch1, kernel_size = ker1, stride = stride1, padding = pad1)
