@@ -72,7 +72,8 @@ def detect_and_resize(gray):
     return img_resized
 
 def preprocess(image):
-    gray_img = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+    cv2img = cv2.imshow(image)
+    gray_img = cv2.cvtColor(cv2img,cv2.COLOR_BGR2GRAY)
     resized_img = detect_and_resize(gray_img)
     return resized_img
 
