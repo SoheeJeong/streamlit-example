@@ -4,46 +4,44 @@ import torch.nn.functional as F
 
 
 class SN_Net(nn.Module):
-    in_ch1 = 1
-    out_ch1 = 6
-    ker1 = 4
-    stride1 = 1
-    pad1 = 2
-
-    out_ch2 = 16
-    ker2 = 3
-    stride2 = 1
-    pad2 = 0
-
-    out_ch3 = 32
-    ker3 = 2
-    stride3 = 1
-    pad3 = 0
-
-    out_ch4 = 64
-    ker4 = 2
-    stride4 = 1
-    pad4 = 0
-
-    out_ch5 = 128
-    ker5 = 2
-    stride5 = 1
-    pad5 = 0
-
-
-    pool_size1 = 3
-    pool_size2 = 2
-    pool_size3 = 2
-    pool_size4 = 2
-    pool_size5 = 2
-
-
-    out_feat1 = 120
-    out_feat2 = 84
-    out_feat3 = 1
-
     def __init__(self, input_shape):
         super(SN_Net, self).__init__()
+        in_ch1 = 1
+        out_ch1 = 6
+        ker1 = 4
+        stride1 = 1
+        pad1 = 2
+
+        out_ch2 = 16
+        ker2 = 3
+        stride2 = 1
+        pad2 = 0
+
+        out_ch3 = 32
+        ker3 = 2
+        stride3 = 1
+        pad3 = 0
+
+        out_ch4 = 64
+        ker4 = 2
+        stride4 = 1
+        pad4 = 0
+
+        out_ch5 = 128
+        ker5 = 2
+        stride5 = 1
+        pad5 = 0
+
+        pool_size1 = 3
+        pool_size2 = 2
+        pool_size3 = 2
+        pool_size4 = 2
+        pool_size5 = 2
+
+        out_feat1 = 120
+        out_feat2 = 84
+        out_feat3 = 1
+        
         input_height, input_width = input_shape
 
         self.conv1 = nn.Conv2d(in_channels = in_ch1, out_channels = out_ch1, kernel_size = ker1, stride = stride1, padding = pad1)
