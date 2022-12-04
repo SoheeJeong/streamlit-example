@@ -78,7 +78,6 @@ def preprocess(image):
 def predict(image):
     #cv2 전처리 pipeline 거치기
     image2 = preprocess(image)
-    clf = load(weight.file)
     #i or e
     first = 'i'
     #s or n
