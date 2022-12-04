@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 from model import SN_Net
+import torch
 
 def detect_and_resize(gray):
     face_detection_option = {'haarcascade_frontalface_default.xml', 'haarcascade_frontalface_alt.xml', 'haarcascade_frontalface_alt2.xml', 'haarcascade_frontalface_alt_tree.xml'}
