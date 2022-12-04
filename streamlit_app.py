@@ -18,7 +18,7 @@ def main():
         image_origin = Image.open(image_uploaded)
     else:
         image_origin = Image.open('demo.jpg')
-    image_origin = np.array(image_origin.convert('RGB'))
+    # image_origin = np.array(image_origin.convert('RGB'))
     st.image(image_origin)
     
     if st.button("Predict my MBTI"):
