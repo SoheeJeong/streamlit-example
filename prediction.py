@@ -92,7 +92,7 @@ def predict(image):
     sn_model.eval()
     with torch.no_grad():
         y_pred = sn_model(image_tensor.unsqueeze(0))
-    second = 's' if ypred==1 else 'n'
+    second = 's' if y_pred==1 else 'n'
     #f or t
     third = 'f'
     #j or p
