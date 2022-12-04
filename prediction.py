@@ -81,7 +81,7 @@ def preprocess(image):
 def predict(image):
     #cv2 전처리 pipeline 거치기
     image2 = preprocess(image)
-    image_tensor = transform.ToTensor(image2)
+    image_tensor = transforms.ToTensor(image2)
     #i or e
     first = 'i'
     #s or n
