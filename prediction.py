@@ -96,12 +96,12 @@ def predict(image):
     #정규화 추가
     train_pred_mean = 0.03442459923357
     train_pred_var = 5.950518349537963e-12
-    pred_values = (pred_values - train_pred_mean) / np.sqrt(train_pred_var)
+    pred_value = (y_pred - train_pred_mean) / np.sqrt(train_pred_var)
     threshold = 0.6791
-    second = 's' if pred_values>=threshold else 'n'
+    second = 's' if pred_value>=threshold else 'n'
     #f or t
     third = 'f'
     #j or p
     forth = 'j'
     #image2,ypred for test
-    return first+second+third+forth, image2, pred_values
+    return first+second+third+forth, image2, pred_value
