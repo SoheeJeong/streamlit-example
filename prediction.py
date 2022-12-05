@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from model import SN_Net, EI_Net
+from model import SN_Net,EI_Net,TF_Net
 import torch
 import torchvision.transforms as transforms
 import streamlit as st
@@ -106,7 +106,11 @@ def predict(image):
     threshold = 0.6791999999998151
     second = 's' if pred_value>=threshold else 'n'
     #f or t
-    third = 'f'
+    train_pred_mean = 0.027130281021799395
+    train_pred_var = 2.412616823793432e-13
+    pred_value = pred_and_normalize(TF_Net,'results/cnn_tf.pth',image_tensor,train_pred_mean,train_pred_var)
+    threshold = 0.19829999999986803
+    third = 't' if pred_value>=threshold else 'f'
     #j or p
     forth = 'j'
     #image2,ypred for test
