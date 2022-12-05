@@ -99,4 +99,4 @@ def predict(image):
     third = 'f'
     #j or p
     forth = 'j'
-    return first+second+third+forth, image2
+    return first+second+third+forth, image2, y_pred
