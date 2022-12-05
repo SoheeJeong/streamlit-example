@@ -100,10 +100,10 @@ def predict(image):
     threshold = 0.5481400437636762
     first = 'e' if pred_value>=threshold else 'i'
     #s or n
-    train_pred_mean = 0.0003726313971853155
-    train_pred_var = 4.695636660473933e-16
+    train_pred_mean = 0.03442459923357
+    train_pred_var = 5.950518349537963e-12
     pred_value = pred_and_normalize(SN_Net,'results/cnn_sn.pth',image_tensor,train_pred_mean,train_pred_var)
-    threshold = 0.5303776683087028
+    threshold = 0.6791999999998151
     second = 's' if pred_value>=threshold else 'n'
     #f or t
     third = 'f'
