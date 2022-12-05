@@ -88,8 +88,8 @@ def predict(image):
     first = 'i'
     #s or n
     sn_model = SN_Net((image_tensor.shape[1], image_tensor.shape[2]))
-    # sn_model.load_state_dict(torch.load('sn_model.pth'))
-    sn_model = torch.load('sn_model.pth')
+    sn_model.load_state_dict(torch.load('sn_model.pth'))
+    # sn_model = torch.load('sn_model.pth')
     sn_model.eval()
     with torch.no_grad():
         y_pred = sn_model(image_tensor.unsqueeze(0))
