@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from model import SN_Net,EI_Net,TF_Net
+from model import SN_Net,EI_Net,TF_Net,JP_Net
 import torch
 import torchvision.transforms as transforms
 import streamlit as st
@@ -96,9 +96,9 @@ def predict(image):
     #i or e
     train_pred_mean = 0.22778183559017
     train_pred_var = 1.0022041672585026e-10
-    pred_value_ie = pred_and_normalize(EI_Net,'results/cnn_ei.pth',image_tensor,train_pred_mean,train_pred_var)
+    pred_value = pred_and_normalize(EI_Net,'results/cnn_ei.pth',image_tensor,train_pred_mean,train_pred_var)
     threshold = 0.5481400437636762
-    first = 'e' if pred_value_ie>=threshold else 'i'
+    first = 'e' if pred_value>=threshold else 'i'
     #s or n
     train_pred_mean = 0.03442459923357
     train_pred_var = 5.950518349537963e-12
@@ -108,10 +108,14 @@ def predict(image):
     #f or t
     train_pred_mean = 0.027130281021799395
     train_pred_var = 2.412616823793432e-13
-    pred_value_ft = pred_and_normalize(TF_Net,'results/cnn_tf.pth',image_tensor,train_pred_mean,train_pred_var)
+    pred_value = pred_and_normalize(TF_Net,'results/cnn_tf.pth',image_tensor,train_pred_mean,train_pred_var)
     threshold = 0.19829999999986803
-    third = 't' if pred_value_ft>=threshold else 'f'
+    third = 't' if pred_value>=threshold else 'f'
     #j or p
-    forth = 'j'
-    #image2,ypred for test
-    return first+second+third+forth, image2, pred_value_ft
+    train_pred_mean = 0.004092429653126318
+    train_pred_var = 2.6295517320389293e-13
+    pred_value = pred_and_normalize(JP_Net,'results/cnn_jp.pth',image_tensor,train_pred_mean,train_pred_var)
+    threshold = 0.5246305418719212
+    third = 'j' if pred_value>=threshold else 'p'
+    
+    return first+second+third+forth, image2, pred_value
