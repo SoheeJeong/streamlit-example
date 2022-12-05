@@ -85,7 +85,8 @@ def pred_and_normalize(net,model_pth,image,mean,var):
     model.eval()
     with torch.no_grad():
         y_pred = model(image.unsqueeze(0))
-    pred_value = (y_pred - mean) / np.sqrt(var)
+    #pred_value = (y_pred - mean) / np.sqrt(var)
+    pred_value = y_pred
     return pred_value
 
 def predict(image):
