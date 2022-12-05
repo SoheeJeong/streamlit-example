@@ -88,15 +88,20 @@ def predict(image):
     first = 'i'
     #s or n
     sn_model = SN_Net((image_tensor.shape[1], image_tensor.shape[2]))
-    sn_model.load_state_dict(torch.load('sn_model.pth'))
+    sn_model.load_state_dict(torch.load('cnn_trial1.pth'))
     # sn_model = torch.load('sn_model.pth')
     sn_model.eval()
     with torch.no_grad():
         y_pred = sn_model(image_tensor.unsqueeze(0))
+    #정규화 추가
+    train_pred_mean = 0.03442459923357
+    train_pred_var = 5.950518349537963e-12
+    pred_values = (pred_values - train_pred_mean) / np.sqrt(train_pred_var)
     threshold = 0.6791
-    second = 's' if y_pred>=threshold else 'n'
+    second = 's' if pred_values>=threshold else 'n'
     #f or t
     third = 'f'
     #j or p
     forth = 'j'
-    return first+second+third+forth, image2, y_pred
+    #image2,ypred for test
+    return first+second+third+forth, image2, pred_values
