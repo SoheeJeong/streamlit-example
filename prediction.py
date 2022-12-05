@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from model import SN_Net
+from model import SN_Net, EI_Net
 import torch
 import torchvision.transforms as transforms
 import streamlit as st
