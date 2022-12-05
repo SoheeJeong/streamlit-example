@@ -94,12 +94,16 @@ def predict(image):
     transform = transforms.ToTensor()
     image_tensor = transform(image2)
     #i or e
-    first = 'i'
+    train_pred_mean = 0.22778183559017
+    train_pred_var = 1.0022041672585026e-10
+    pred_value = pred_and_normalize(SN_Net,'results/cnn_ei.pth',image_tensor,train_pred_mean,train_pred_var)
+    threshold = 0.5481400437636762
+    first = 'e' if pred_value>=threshold else 'i'
     #s or n
-    train_pred_mean = 0.03442459923357
-    train_pred_var = 5.950518349537963e-12
-    pred_value = pred_and_normalize(SN_Net,'cnn_trial1.pth',image_tensor,train_pred_mean,train_pred_var)
-    threshold = 0.6791
+    train_pred_mean = 0.0003726313971853155
+    train_pred_var = 4.695636660473933e-16
+    pred_value = pred_and_normalize(SN_Net,'results/cnn_sn.pth',image_tensor,train_pred_mean,train_pred_var)
+    threshold = 0.5303776683087028
     second = 's' if pred_value>=threshold else 'n'
     #f or t
     third = 'f'
