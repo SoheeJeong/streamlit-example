@@ -79,6 +79,15 @@ def preprocess(image):
     resized_img = detect_and_resize(gray_img)
     return resized_img
 
+def pred_and_normalize(net,model_pth,image,mean,var):
+    model = net((image.shape[1], image.shape[2]))
+    model.load_state_dict(torch.load(model_pth))
+    model.eval()
+    with torch.no_grad():
+        y_pred = model(image.unsqueeze(0))
+    pred_value = (y_pred - mean) / np.sqrt(var)
+    return pred_value
+
 def predict(image):
     #cv2 전처리 pipeline 거치기
     image2 = preprocess(image)
@@ -87,16 +96,9 @@ def predict(image):
     #i or e
     first = 'i'
     #s or n
-    sn_model = SN_Net((image_tensor.shape[1], image_tensor.shape[2]))
-    sn_model.load_state_dict(torch.load('cnn_trial1.pth'))
-    # sn_model = torch.load('sn_model.pth')
-    sn_model.eval()
-    with torch.no_grad():
-        y_pred = sn_model(image_tensor.unsqueeze(0))
-    #정규화 추가
     train_pred_mean = 0.03442459923357
     train_pred_var = 5.950518349537963e-12
-    pred_value = (y_pred - train_pred_mean) / np.sqrt(train_pred_var)
+    pred_value = pred_and_normalize(SN_Net,'cnn_trial1.pth',image_tensor,train_pred_mean,train_pred_var)
     threshold = 0.6791
     second = 's' if pred_value>=threshold else 'n'
     #f or t
