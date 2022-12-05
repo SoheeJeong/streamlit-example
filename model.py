@@ -98,13 +98,13 @@ class SN_Net(nn.Module):
     def __init__(self, input_shape):
         super(SN_Net, self).__init__()
         in_ch1 = 1
-        out_ch1 = 6
-        ker1 = 4
+        out_ch1 = 8
+        ker1 = 6
         stride1 = 1
-        pad1 = 2
+        pad1 = 0
 
         out_ch2 = 16
-        ker2 = 3
+        ker2 = 4
         stride2 = 1
         pad2 = 0
 
@@ -123,15 +123,16 @@ class SN_Net(nn.Module):
         stride5 = 1
         pad5 = 0
 
-        pool_size1 = 3
+        pool_size1 = 2
         pool_size2 = 2
         pool_size3 = 2
         pool_size4 = 2
         pool_size5 = 2
 
-        out_feat1 = 120
-        out_feat2 = 84
-        out_feat3 = 1
+        out_feat1 = 128
+        out_feat2 = 64
+        out_feat3 = 16
+        out_feat4 = 1
 
         input_height, input_width = input_shape
 
@@ -162,7 +163,8 @@ class SN_Net(nn.Module):
         self.fc1 = nn.Linear(out_ch4 * output4_height * output4_width, out_feat1)
         self.fc2 = nn.Linear(out_feat1, out_feat2)
         self.fc3 = nn.Linear(out_feat2, out_feat3)
-
+        self.fc4 = nn.Linear(out_feat3, out_feat4)
+    
     def forward(self, x):
         x = self.pool1(F.relu(self.conv1(x)))
         #print('1')
@@ -180,9 +182,5 @@ class SN_Net(nn.Module):
         x = torch.sigmoid(self.fc1(x))
         x = torch.sigmoid(self.fc2(x))
         x = torch.sigmoid(self.fc3(x))
+        x = torch.sigmoid(self.fc4(x))
         return x
-
-
-
-
-
