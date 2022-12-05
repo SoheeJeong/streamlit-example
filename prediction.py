@@ -108,10 +108,10 @@ def predict(image):
     #f or t
     train_pred_mean = 0.027130281021799395
     train_pred_var = 2.412616823793432e-13
-    pred_value = pred_and_normalize(TF_Net,'results/cnn_tf.pth',image_tensor,train_pred_mean,train_pred_var)
+    pred_value_ft = pred_and_normalize(TF_Net,'results/cnn_tf.pth',image_tensor,train_pred_mean,train_pred_var)
     threshold = 0.19829999999986803
-    third = 't' if pred_value>=threshold else 'f'
+    third = 't' if pred_value_ft>=threshold else 'f'
     #j or p
     forth = 'j'
     #image2,ypred for test
-    return first+second+third+forth, image2, pred_value_ie
+    return first+second+third+forth, image2, pred_value_ft
