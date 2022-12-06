@@ -4,6 +4,7 @@ from model import SN_Net,EI_Net,TF_Net,JP_Net
 import torch
 import torchvision.transforms as transforms
 import streamlit as st
+from PIL import Image
 
 def detect_and_resize(gray):
     face_detection_option = {'haarcascade_frontalface_default.xml', 'haarcascade_frontalface_alt.xml', 'haarcascade_frontalface_alt2.xml', 'haarcascade_frontalface_alt_tree.xml'}
@@ -92,7 +93,7 @@ def pred_and_normalize(net,model_pth,image,mean,var):
 def predict(image):
     #cv2 전처리 pipeline 거치기
     image2 = preprocess(image)
-    cv2.imwrite('img_cropped',image2)
+    # cv2.imwrite('img_cropped',image2)
     transform = transforms.ToTensor()
     image_tensor = transform(image2)
     
