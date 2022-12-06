@@ -110,11 +110,9 @@ def predict(image):
     train_pred_mean = 0.49552908146156455
     train_pred_var = 1.232101041861945e-12
     pred_value_sn = pred_and_normalize(SN_Net,'results/cnn_sn.pth',image_tensor,train_pred_mean,train_pred_var)
-
-    print(pred_value_sn)
-
     threshold = 0.9164999999997889
-    second = 's' if pred_value>=threshold else 'n'
+    second = 's' if pred_value_sn>=threshold else 'n'
+    print(pred_value_sn)
     
     #f or t
     train_pred_mean = 0.018999429554267342
