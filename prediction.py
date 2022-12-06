@@ -67,8 +67,8 @@ def detect_and_resize(gray):
     # crop the face
     img_cropped = img_rotated[y:y+h, x:x+w]
     # resize the image
-    width = 128
-    height = 128
+    width = 64
+    height = 64
     img_resized = cv2.resize(img_cropped, (width, height), interpolation = cv2.INTER_LINEAR)
     
     return img_resized
