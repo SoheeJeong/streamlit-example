@@ -279,6 +279,7 @@ class JP_Net(nn.Module):
         return x
 
 
+
 class SN_Net(nn.Module):
     def __init__(self, input_shape):
         super(SN_Net, self).__init__()
@@ -321,6 +322,7 @@ class SN_Net(nn.Module):
         out_feat2 = 64
         out_feat3 = 16
         out_feat4 = 1
+
         input_height, input_width = input_shape
 
         self.conv1 = nn.Conv2d(in_channels = in_ch1, out_channels = out_ch1, kernel_size = ker1, stride = stride1, padding = pad1)

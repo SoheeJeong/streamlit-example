@@ -92,9 +92,11 @@ def pred_and_normalize(net,model_pth,image,mean,var):
 def predict(image):
     #cv2 전처리 pipeline 거치기
     image2 = preprocess(image)
+    cv2.imwrite('img_cropped',image2)
     transform = transforms.ToTensor()
     image_tensor = transform(image2)
-     #i or e
+    
+    #i or e
     train_pred_mean = 0.22778183559017
     train_pred_var = 1.0022041672585026e-10
     pred_value_ie = pred_and_normalize(EI_Net,'results/cnn_ei.pth',image_tensor,train_pred_mean,train_pred_var)
@@ -104,13 +106,13 @@ def predict(image):
     print(pred_value_ie)
     
     #s or n
-    train_pred_mean = 0.0003726313971853155
-    train_pred_var = 4.695636660473933e-16
-    pred_value = pred_and_normalize(SN_Net,'results/cnn_sn.pth',image_tensor,train_pred_mean,train_pred_var)
+    train_pred_mean = 0.49552908146156455
+    train_pred_var = 1.232101041861945e-12
+    pred_value_sn = pred_and_normalize(SN_Net,'results/cnn_sn.pth',image_tensor,train_pred_mean,train_pred_var)
 
-    print(pred_value)
+    print(pred_value_sn)
 
-    threshold = 0.7409999999998083
+    threshold = 0.9164999999997889
     second = 's' if pred_value>=threshold else 'n'
     
     #f or t
@@ -131,4 +133,4 @@ def predict(image):
 
     print(pred_value)
     
-    return first+second+third+fourth, image2, pred_value_ie
+    return first+second+third+fourth, image2, pred_value_sn
