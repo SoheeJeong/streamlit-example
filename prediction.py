@@ -67,8 +67,8 @@ def detect_and_resize(gray):
     # crop the face
     img_cropped = img_rotated[y:y+h, x:x+w]
     # resize the image
-    width = 64
-    height = 64
+    width = 128
+    height = 128
     img_resized = cv2.resize(img_cropped, (width, height), interpolation = cv2.INTER_LINEAR)
     
     return img_resized
@@ -94,29 +94,41 @@ def predict(image):
     image2 = preprocess(image)
     transform = transforms.ToTensor()
     image_tensor = transform(image2)
-    #i or e
+     #i or e
     train_pred_mean = 0.22778183559017
     train_pred_var = 1.0022041672585026e-10
     pred_value = pred_and_normalize(EI_Net,'results/cnn_ei.pth',image_tensor,train_pred_mean,train_pred_var)
-    threshold = 0.5481400437636762
+    threshold = -0.9961000000000004
     first = 'e' if pred_value>=threshold else 'i'
+
+    print(pred_value)
+    
     #s or n
-    train_pred_mean = 0.03442459923357
-    train_pred_var = 5.950518349537963e-12
-    pred_value = pred_and_normalize(SN_Net,'results/cnn_trial1.pth',image_tensor,train_pred_mean,train_pred_var)
-    threshold = 0.6791999999998151
+    train_pred_mean = 0.0003726313971853155
+    train_pred_var = 4.695636660473933e-16
+    pred_value = pred_and_normalize(SN_Net,'results/cnn_sn.pth',image_tensor,train_pred_mean,train_pred_var)
+
+    print(pred_value)
+
+    threshold = 0.7409999999998083
     second = 's' if pred_value>=threshold else 'n'
+    
     #f or t
-    train_pred_mean = 0.027130281021799395
-    train_pred_var = 2.412616823793432e-13
+    train_pred_mean = 0.018999429554267342
+    train_pred_var = 2.564139769763002e-13
     pred_value = pred_and_normalize(TF_Net,'results/cnn_tf.pth',image_tensor,train_pred_mean,train_pred_var)
-    threshold = 0.19829999999986803
+    threshold = -0.17310000000009107
     third = 't' if pred_value>=threshold else 'f'
+
+    print(pred_value)
+    
     #j or p
     train_pred_mean = 0.004092429653126318
     train_pred_var = 2.6295517320389293e-13
     pred_value = pred_and_normalize(JP_Net,'results/cnn_jp.pth',image_tensor,train_pred_mean,train_pred_var)
     threshold = 0.5246305418719212
     fourth = 'j' if pred_value>=threshold else 'p'
+
+    print(pred_value)
     
     return first+second+third+fourth, image2, pred_value
