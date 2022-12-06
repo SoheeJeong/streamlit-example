@@ -93,7 +93,6 @@ def pred_and_normalize(net,model_pth,image,mean,var):
 def predict(image):
     #cv2 전처리 pipeline 거치기
     image2 = preprocess(image)
-    # cv2.imwrite('img_cropped',image2)
     transform = transforms.ToTensor()
     image_tensor = transform(image2)
     
