@@ -97,10 +97,10 @@ def predict(image):
     image_tensor = transform(image2)
     
     #i or e
-    train_pred_mean = 0.22778183559017
-    train_pred_var = 1.0022041672585026e-10
-    pred_value_ie = pred_and_normalize(EI_Net,'results/cnn_ei.pth',image_tensor,train_pred_mean,train_pred_var)
-    threshold = -0.9961000000000004
+    train_pred_mean = 0.21210224592070065
+    train_pred_var = 3.389753451047752e-10
+    pred_value_ie = pred_and_normalize(EI_Net,'results/cnn_ei_4.pth',image_tensor,train_pred_mean,train_pred_var)
+    threshold = -0.9135000000000095
     first = 'e' if pred_value_ie>=threshold else 'i'
 
     print(pred_value_ie)
@@ -131,4 +131,4 @@ def predict(image):
 
     print(pred_value)
     
-    return first+second+third+fourth
+    return first+second+third+fourth,pred_value_ie
