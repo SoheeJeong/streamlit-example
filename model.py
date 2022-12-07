@@ -133,7 +133,6 @@ class TF_Net(nn.Module):
         out_feat1 = 120
         out_feat2 = 84
         out_feat3 = 1
-
         input_height, input_width = input_shape
 
         self.conv1 = nn.Conv2d(in_channels = in_ch1, out_channels = out_ch1, kernel_size = ker1, stride = stride1, padding = pad1)
@@ -188,7 +187,6 @@ class TF_Net(nn.Module):
         x = torch.sigmoid(self.fc2(x))
         x = torch.sigmoid(self.fc3(x))
         return x
-
 
 class JP_Net(nn.Module):
     def __init__(self, input_shape):
