@@ -193,18 +193,19 @@ class TF_Net(nn.Module):
 class JP_Net(nn.Module):
     def __init__(self, input_shape):
         super(JP_Net, self).__init__()
+        # parameter 값은 이것을 변경해주세요
         in_ch1 = 1
-        out_ch1 = 16
+        out_ch1 = 6
         ker1 = 4
         stride1 = 1
-        pad1 = 0
+        pad1 = 2
 
-        out_ch2 = 32
+        out_ch2 = 16
         ker2 = 3
         stride2 = 1
         pad2 = 0
 
-        out_ch3 = 64
+        out_ch3 = 32
         ker3 = 2
         stride3 = 1
         pad3 = 0
@@ -226,10 +227,10 @@ class JP_Net(nn.Module):
         pool_size4 = 2
         pool_size5 = 2
 
+
         out_feat1 = 120
         out_feat2 = 84
         out_feat3 = 1
-
         input_height, input_width = input_shape
 
         self.conv1 = nn.Conv2d(in_channels = in_ch1, out_channels = out_ch1, kernel_size = ker1, stride = stride1, padding = pad1)
@@ -279,7 +280,6 @@ class JP_Net(nn.Module):
         x = torch.sigmoid(self.fc2(x))
         x = torch.sigmoid(self.fc3(x))
         return x
-
 
 
 class SN_Net(nn.Module):

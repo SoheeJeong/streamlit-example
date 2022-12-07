@@ -125,9 +125,9 @@ def predict(image):
     #j or p
     train_pred_mean = 0.004092429653126318
     train_pred_var = 2.6295517320389293e-13
-    # pred_value = pred_and_normalize(JP_Net,'results/cnn_jp.pth',image_tensor,train_pred_mean,train_pred_var)
+    pred_value = pred_and_normalize(JP_Net,'results/cnn_jp.pth',image_tensor,train_pred_mean,train_pred_var)
     threshold = 0.5246305418719212
-    pred_value = 0.0
+    # pred_value = 0.0
     fourth = 'j' if pred_value>=threshold else 'p'
 
     print(pred_value)
