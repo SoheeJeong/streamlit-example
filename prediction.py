@@ -132,4 +132,4 @@ def predict(image):
 
     print(pred_value)
     
-    return first+second+third+fourth,pred_value_ie
+    return first+second+third+fourth,pred_value_ie,pred_value
