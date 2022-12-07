@@ -7,17 +7,17 @@ class EI_Net(nn.Module):
         super(EI_Net, self).__init__()
         # parameter 값은 이것을 변경해주세요
         in_ch1 = 1
-        out_ch1 = 16
-        ker1 = 4
+        out_ch1 = 8
+        ker1 = 6
         stride1 = 1
         pad1 = 0
 
-        out_ch2 = 32
-        ker2 = 3
+        out_ch2 = 16
+        ker2 = 4
         stride2 = 1
         pad2 = 0
 
-        out_ch3 = 64
+        out_ch3 = 32
         ker3 = 2
         stride3 = 1
         pad3 = 0
@@ -33,17 +33,17 @@ class EI_Net(nn.Module):
         pad5 = 0
 
 
-        pool_size1 = 3
+        pool_size1 = 2
         pool_size2 = 2
         pool_size3 = 2
         pool_size4 = 2
         pool_size5 = 2
 
 
-        out_feat1 = 120
-        out_feat2 = 84
-        out_feat3 = 1
-
+        out_feat1 = 128
+        out_feat2 = 64
+        out_feat3 = 16
+        out_feat4 = 1
         input_height, input_width = input_shape
 
         self.conv1 = nn.Conv2d(in_channels = in_ch1, out_channels = out_ch1, kernel_size = ker1, stride = stride1, padding = pad1)
@@ -73,6 +73,7 @@ class EI_Net(nn.Module):
         self.fc1 = nn.Linear(out_ch4 * output4_height * output4_width, out_feat1)
         self.fc2 = nn.Linear(out_feat1, out_feat2)
         self.fc3 = nn.Linear(out_feat2, out_feat3)
+        self.fc4 = nn.Linear(out_feat3, out_feat4)
 
     
     def forward(self, x):
@@ -92,6 +93,7 @@ class EI_Net(nn.Module):
         x = torch.sigmoid(self.fc1(x))
         x = torch.sigmoid(self.fc2(x))
         x = torch.sigmoid(self.fc3(x))
+        x = torch.sigmoid(self.fc4(x))
         return x
 
 

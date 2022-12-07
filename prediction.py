@@ -99,10 +99,11 @@ def predict(image):
     #i or e
     train_pred_mean = 0.21210224592070065
     train_pred_var = 3.389753451047752e-10
-    pred_value_ie = pred_and_normalize(EI_Net,'results/cnn_ei_4.pth',image_tensor,train_pred_mean,train_pred_var)
+    # pred_value_ie = pred_and_normalize(EI_Net,'results/cnn_en_64_2.pth',image_tensor,train_pred_mean,train_pred_var)
     threshold = -0.9135000000000095
+    pred_value_ie = 0.0
     first = 'e' if pred_value_ie>=threshold else 'i'
-
+    
     print(pred_value_ie)
     
     #s or n
