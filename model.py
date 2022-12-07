@@ -2,10 +2,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch
 
-
 class EI_Net(nn.Module):
     def __init__(self, input_shape):
         super(EI_Net, self).__init__()
+        # parameter 값은 이것을 변경해주세요
         in_ch1 = 1
         out_ch1 = 16
         ker1 = 4
@@ -32,11 +32,13 @@ class EI_Net(nn.Module):
         stride5 = 1
         pad5 = 0
 
+
         pool_size1 = 3
         pool_size2 = 2
         pool_size3 = 2
         pool_size4 = 2
         pool_size5 = 2
+
 
         out_feat1 = 120
         out_feat2 = 84
