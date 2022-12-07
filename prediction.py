@@ -114,22 +114,21 @@ def predict(image):
     print(pred_value_sn)
     
     #f or t
-    train_pred_mean = 0.018999429554267342
-    train_pred_var = 2.564139769763002e-13
-    pred_value = pred_and_normalize(TF_Net,'results/cnn_tf.pth',image_tensor,train_pred_mean,train_pred_var)
+    train_pred_mean = 0.0003833619827376889
+    train_pred_var = 2.1175718552257672e-16
+    pred_value_ft = pred_and_normalize(TF_Net,'results/cnn_tf.pth',image_tensor,train_pred_mean,train_pred_var)
     threshold = -0.17310000000009107
-    third = 't' if pred_value>=threshold else 'f'
+    third = 't' if pred_value_ft>=threshold else 'f'
 
-    print(pred_value)
+    print(pred_value_ft)
     
     #j or p
-    train_pred_mean = 0.004092429653126318
-    train_pred_var = 2.6295517320389293e-13
+    train_pred_mean = 0.012840850023718027
+    train_pred_var = 5.806470993522891e-13
     pred_value = pred_and_normalize(JP_Net,'results/cnn_jp.pth',image_tensor,train_pred_mean,train_pred_var)
-    threshold = 0.5246305418719212
-    # pred_value = 0.0
+    threshold = -0.927300000000008
     fourth = 'j' if pred_value>=threshold else 'p'
 
     print(pred_value)
     
-    return first+second+third+fourth,pred_value_ie,pred_value
+    return first+second+third+fourth,pred_value_ie,pred_value,pred_value_ft
